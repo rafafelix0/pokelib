@@ -14,7 +14,7 @@ public class Scorbunny extends Pokemon {
     Map<LearnMoveType, Map<Move, String>> fullLearnSet;
 
     public Scorbunny() {
-        super("Scorbunny", 50, 71, 40, 40, 40, 69, Type.FIRE, null);
+        super("Scorbunny", 5, 50, 71, 40, 40, 40, 69, Type.FIRE, null);
 
         levelUpLearnSet = Map.ofEntries(
                 Map.entry(new Tackle(), ""),

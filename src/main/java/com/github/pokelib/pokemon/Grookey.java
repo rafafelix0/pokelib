@@ -11,7 +11,7 @@ public class Grookey extends Pokemon {
     Map<LearnMoveType, Map<Move, String>> fullLearnSet;
 
     public Grookey() {
-        super("Grookey", 50, 65, 50, 40, 40, 65, Type.GRASS, null);
+        super("Grookey", 5,50, 65, 50, 40, 40, 65, Type.GRASS, null);
 
         levelUpLearnSet = Map.ofEntries(
                 Map.entry(new Scratch(), ""),

@@ -11,7 +11,7 @@ public class Sobble extends Pokemon {
     Map<LearnMoveType, Map<Move, String>> fullLearnSet;
 
     public Sobble() {
-        super("Sobble", 50, 40, 40, 70, 40, 70, Type.WATER, null);
+        super("Sobble", 5, 50, 40, 40, 70, 40, 70, Type.WATER, null);
 
         levelUpLearnSet = Map.ofEntries(
                 Map.entry(new Pound(), ""),
