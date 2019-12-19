@@ -15,6 +15,7 @@ public abstract class Pokemon {
 
     private int hpBase;
     private Attribute hp;
+    private int currentHp;
     private int attackBase;
     private Attribute attack;
     private int defenseBase;
@@ -48,6 +49,7 @@ public abstract class Pokemon {
         this.speed = new Attribute();
         int natureIndex = new Random().nextInt(Nature.values().length);
         this.nature = Nature.values()[natureIndex];
+        this.currentHp = getHpScore();
     }
 
     public abstract Map<LearnMoveType, Map<Move, String>> getLearnSet();
@@ -100,5 +102,17 @@ public abstract class Pokemon {
     public int getSpeedScore() {
         double multiplier = nature.getPositive() == AttributeType.SPEED ? 1.1 : nature.getNegative() == AttributeType.SPEED ? 0.9 : 1.0;
         return (int) (((((2 * speedBase + speed.getIv() + (speed.getEv() / 4)) * level) / 100) + 5) * multiplier);
+    }
+
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    public void damage(int damage) {
+        currentHp -= damage;
+    }
+
+    public boolean isFainted() {
+        return currentHp <= 0;
     }
 }
