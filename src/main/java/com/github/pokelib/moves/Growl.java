@@ -1,5 +1,6 @@
 package com.github.pokelib.moves;
 
+import com.github.pokelib.pokemon.Pokemon;
 import com.github.pokelib.types.Type;
 
 public class Growl extends Move {
@@ -7,5 +8,8 @@ public class Growl extends Move {
         super("Growl", Type.NORMAL, Category.STATUS, null, 100, 40);
     }
 
-    // TODO: implement lower attack effect
+    @Override
+    public void effect(Pokemon attacker, Pokemon defender) {
+
+    }
 }

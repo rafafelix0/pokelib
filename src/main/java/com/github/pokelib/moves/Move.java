@@ -1,5 +1,6 @@
 package com.github.pokelib.moves;
 
+import com.github.pokelib.pokemon.Pokemon;
 import com.github.pokelib.types.Type;
 
 public abstract class Move {
@@ -42,4 +43,6 @@ public abstract class Move {
     public int getBasePP() {
         return basePP;
     }
+
+    public abstract void effect(Pokemon attacker, Pokemon defender);
 }
