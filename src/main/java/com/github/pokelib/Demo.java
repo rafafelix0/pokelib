@@ -17,19 +17,19 @@ public class Demo {
         Pokemon pokemon1 = player1.get(new Random().nextInt(player1.size()));
         Pokemon pokemon2 = player2.get(new Random().nextInt(player2.size()));
         System.out.println("Player1: " + pokemon1.getName() + " | " + pokemon1.getNature());
-        System.out.println(pokemon1.getHpScore() + " | " + pokemon1.getAttackScore() + " | " + pokemon1.getDefenseScore() + " | " + pokemon1.getSpAttackScore() + " | " + pokemon1.getSpDefenseScore() + " | " + pokemon1.getSpeedScore());
+        System.out.println(pokemon1.getHp() + " | " + pokemon1.getAttack() + " | " + pokemon1.getDefense() + " | " + pokemon1.getSpAttack() + " | " + pokemon1.getSpDefense() + " | " + pokemon1.getSpeed());
         System.out.println("");
         System.out.println("Player2: " + pokemon2.getName() + " | " + pokemon2.getNature());
-        System.out.println(pokemon2.getHpScore() + " | " + pokemon2.getAttackScore() + " | " + pokemon2.getDefenseScore() + " | " + pokemon2.getSpAttackScore() + " | " + pokemon2.getSpDefenseScore() + " | " + pokemon2.getSpeedScore());
+        System.out.println(pokemon2.getHp() + " | " + pokemon2.getAttack() + " | " + pokemon2.getDefense() + " | " + pokemon2.getSpAttack() + " | " + pokemon2.getSpDefense() + " | " + pokemon2.getSpeed());
 
         while(!pokemon1.isFainted() && !pokemon2.isFainted()) {
             Pokemon attacker = null;
             Pokemon defender = null;
-            if (pokemon1.getSpeedScore() > pokemon2.getSpeedScore()) {
+            if (pokemon1.getSpeed() > pokemon2.getSpeed()) {
                 System.out.println("Player1 attacks first");
                 attacker = pokemon1;
                 defender = pokemon2;
-            } else if (pokemon2.getSpeedScore() > pokemon1.getSpeedScore()) {
+            } else if (pokemon2.getSpeed() > pokemon1.getSpeed()) {
                 System.out.println("Player2 attacks first");
                 attacker = pokemon2;
                 defender = pokemon1;
@@ -75,7 +75,7 @@ public class Demo {
 
     public static int attack(Pokemon pokemon1, Pokemon pokemon2, Move attack) {
         // ONLY PHYSICAL CONSIDERED
-        int baseDamage = (((((2 * pokemon1.getLevel()) / 5) + 2) * attack.getBasePower()) * (pokemon1.getAttackScore() / pokemon2.getDefenseScore())) / 50 + 2;
+        int baseDamage = (((((2 * pokemon1.getLevel()) / 5) + 2) * attack.getBasePower()) * (pokemon1.getAttack() / pokemon2.getDefense())) / 50 + 2;
         // TODO: check all modifiers (https://bulbapedia.bulbagarden.net/wiki/Damage)
         double modifier = (Math.random() * (1.0 - 0.85)) + 0.85;
 

@@ -13,18 +13,12 @@ public abstract class Pokemon {
     private int level;
     private Nature nature;
 
-    private int hpBase;
     private Attribute hp;
     private int currentHp;
-    private int attackBase;
     private Attribute attack;
-    private int defenseBase;
     private Attribute defense;
-    private int spAttackBase;
     private Attribute spAttack;
-    private int spDefenseBase;
     private Attribute spDefense;
-    private int speedBase;
     private Attribute speed;
 
     private Type type1;
@@ -33,23 +27,17 @@ public abstract class Pokemon {
     public Pokemon(String name, int level, int hpBase, int attackBase, int defenseBase, int spAttackBase, int spDefenseBase, int speedBase, Type type1, Type type2) {
         this.name = name;
         this.level = level;
-        this.hpBase = hpBase;
-        this.attackBase = attackBase;
-        this.defenseBase = defenseBase;
-        this.spAttackBase = spAttackBase;
-        this.spDefenseBase = spDefenseBase;
-        this.speedBase = speedBase;
         this.type1 = type1;
         this.type2 = type2;
-        this.hp = new Attribute();
-        this.attack = new Attribute();
-        this.defense = new Attribute();
-        this.spAttack = new Attribute();
-        this.spDefense = new Attribute();
-        this.speed = new Attribute();
+        this.hp = new HpAttribute(hpBase);
+        this.attack = new Attribute(AttributeType.ATTACK, attackBase);
+        this.defense = new Attribute(AttributeType.DEFENSE, defenseBase);
+        this.spAttack = new Attribute(AttributeType.SP_ATTACK, spAttackBase);
+        this.spDefense = new Attribute(AttributeType.SP_DEFENSE, spDefenseBase);
+        this.speed = new Attribute(AttributeType.SPEED, speedBase);
         int natureIndex = new Random().nextInt(Nature.values().length);
         this.nature = Nature.values()[natureIndex];
-        this.currentHp = getHpScore();
+        this.currentHp = getHp();
     }
 
     public abstract Map<LearnMoveType, Map<Move, String>> getLearnSet();
@@ -75,33 +63,28 @@ public abstract class Pokemon {
         return type2;
     }
 
-    public int getHpScore() {
-        return (((2 * hpBase + hp.getIv() + (hp.getEv() / 4)) * level) / 100) + level + 10;
+    public int getHp() {
+        return hp.getValue(nature, level);
     }
 
-    public int getAttackScore() {
-        double multiplier = nature.getPositive() == AttributeType.ATTACK ? 1.1 : nature.getNegative() == AttributeType.ATTACK ? 0.9 : 1.0;
-        return (int) (((((2 * attackBase + attack.getIv() + (attack.getEv() / 4)) * level) / 100) + 5) * multiplier);
+    public int getAttack() {
+        return attack.getValue(nature, level);
     }
 
-    public int getDefenseScore() {
-        double multiplier = nature.getPositive() == AttributeType.DEFENSE ? 1.1 : nature.getNegative() == AttributeType.DEFENSE ? 0.9 : 1.0;
-        return (int) (((((2 * defenseBase + defense.getIv() + (defense.getEv() / 4)) * level) / 100) + 5) * multiplier);
+    public int getDefense() {
+        return defense.getValue(nature, level);
     }
 
-    public int getSpAttackScore() {
-        double multiplier = nature.getPositive() == AttributeType.SP_ATTACK ? 1.1 : nature.getNegative() == AttributeType.SP_ATTACK ? 0.9 : 1.0;
-        return (int) (((((2 * spAttackBase + spAttack.getIv() + (spAttack.getEv() / 4)) * level) / 100) + 5) * multiplier);
+    public int getSpAttack() {
+        return spAttack.getValue(nature, level);
     }
 
-    public int getSpDefenseScore() {
-        double multiplier = nature.getPositive() == AttributeType.SP_DEFENSE ? 1.1 : nature.getNegative() == AttributeType.SP_DEFENSE ? 0.9 : 1.0;
-        return (int) (((((2 * spDefenseBase + spDefense.getIv() + (spDefense.getEv() / 4)) * level) / 100) + 5) * multiplier);
+    public int getSpDefense() {
+        return spDefense.getValue(nature, level);
     }
 
-    public int getSpeedScore() {
-        double multiplier = nature.getPositive() == AttributeType.SPEED ? 1.1 : nature.getNegative() == AttributeType.SPEED ? 0.9 : 1.0;
-        return (int) (((((2 * speedBase + speed.getIv() + (speed.getEv() / 4)) * level) / 100) + 5) * multiplier);
+    public int getSpeed() {
+        return speed.getValue(nature, level);
     }
 
     public int getCurrentHp() {
