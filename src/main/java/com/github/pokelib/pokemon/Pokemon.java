@@ -71,21 +71,41 @@ public abstract class Pokemon {
         return attack.getValue(nature, level);
     }
 
+    public void lowersAttack(int stages) { attack.lowers(stages); }
+
+    public void raisesAttack(int stages) { attack.raises(stages); }
+
     public int getDefense() {
         return defense.getValue(nature, level);
     }
+
+    public void lowersDefense(int stages) { defense.lowers(stages); }
+
+    public void raisesDefense(int stages) { defense.raises(stages); }
 
     public int getSpAttack() {
         return spAttack.getValue(nature, level);
     }
 
+    public void lowersSpAttack(int stages) { spAttack.lowers(stages); }
+
+    public void raisesSpAttack(int stages) { spAttack.raises(stages); }
+
     public int getSpDefense() {
         return spDefense.getValue(nature, level);
     }
 
+    public void lowersSpDefense(int stages) { spDefense.lowers(stages); }
+
+    public void raisesSpDefense(int stages) { spDefense.raises(stages); }
+
     public int getSpeed() {
         return speed.getValue(nature, level);
     }
+
+    public void lowersSpeed(int stages) { speed.lowers(stages); }
+
+    public void raisesSpeed(int stages) { speed.raises(stages); }
 
     public int getCurrentHp() {
         return currentHp;

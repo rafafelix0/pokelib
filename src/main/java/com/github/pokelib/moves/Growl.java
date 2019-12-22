@@ -10,6 +10,6 @@ public class Growl extends Move {
 
     @Override
     public void effect(Pokemon attacker, Pokemon defender) {
-
+        defender.lowersAttack(1);
     }
 }
